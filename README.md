@@ -30,7 +30,8 @@ For example, with `categoryPreset: en`:
 ```text
 1028 | Analysis | Short-drama platform verification
 1027 | Fix | Four-device acceptance rework
-1026 | Deploy | Ubuntu environment setup
+1026 | Release | Ubuntu environment setup
+1025 | Optimize | Reduce memory usage in the renderer
 ```
 
 Dates are computed by the plugin from the session's creation time, never by the
@@ -59,7 +60,7 @@ and mirrors conventions used by other coding agents.
 Add this market index source in **Plugins → Discover → Index sources**:
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.4.4/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.5.0/market/index.json
 ```
 
 Then install **Session title stamp** from the list. The plugin installs as a
@@ -129,7 +130,7 @@ mode using `retitleEvery`.
 
 ### Header button and hover stats
 
-0.4.4 adds a small browser half:
+0.5.0 adds a small browser half:
 
 - a **refresh icon** in the conversation header; it runs the same `/retitle`
   command as typing it, and is disabled while the session is running.
@@ -209,7 +210,7 @@ typo is visible instead of silently disappearing. The template owns the final
 format; `maxTitleBytes` still clips the result.
 
 The default taxonomy is Chinese. `categoryPreset: en` switches it to
-`Analysis / Build / Fix / Debug / QA / Deploy / Docs / Other`; `categories`
+`Analysis / Build / Fix / Optimize / Debug / QA / Release / Docs / Other`; `categories`
 overrides either preset with any labels you want. The prompt lists the configured
 labels and the local fallback maps common keywords onto them.
 

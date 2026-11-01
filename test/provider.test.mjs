@@ -114,7 +114,7 @@ function eligibleEvent(seq = 1) {
   stub.reply('```json\n{"category":"整改","name":"修复登录超时|问题"}\n```')
   const result = await provider.generate(request())
 
-  assert.equal(result.title, '1028 | 整改 | 修复登录超时 问题')
+  assert.equal(result.title, '1028 | 修复 | 修复登录超时 问题')
   assert.deepEqual(result.messageSeqs, [4, 9])
   assert.deepEqual(result.model, { provider: 'mock-provider', model: 'mock-title-model' })
   assert.ok(Buffer.byteLength(result.title, 'utf8') <= 80)
@@ -150,7 +150,7 @@ function eligibleEvent(seq = 1) {
   const { provider, warnings } = setup()
   stub.fail('mock model down')
   const result = await provider.generate(request())
-  assert.match(result.title, /^1028 \| (分析|验收|部署|整改) \| /u)
+  assert.match(result.title, /^1028 \| (分析|验收|发布|修复) \| /u)
   assert.deepEqual(result.messageSeqs, [4, 9])
   assert.equal(result.model, undefined)
   assert.match(warnings.at(-1), /using local naming/u)
@@ -184,7 +184,7 @@ function eligibleEvent(seq = 1) {
     finish: { kind: 'max-tokens' },
   })
   const result = await provider.generate(request())
-  assert.equal(result.title, '1028 | 部署 | Ubuntu 环境初始化')
+  assert.equal(result.title, '1028 | 发布 | Ubuntu 环境初始化')
 }
 
 // 7. YYMM and a topic-first template.

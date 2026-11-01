@@ -21,8 +21,9 @@
 
 ```text
 1028 | 分析 | 绿洲短剧平台验证
-1027 | 整改 | 四台设备第十题验收返修
-1026 | 部署 | Ubuntu 环境初始化
+1027 | 修复 | 四台设备第十题验收返修
+1026 | 发布 | Ubuntu 环境初始化
+1025 | 优化 | 降低渲染器内存占用
 ```
 
 日期由插件从**会话创建时间**计算，不交给模型；分类只能从可配置词表中选择，并在本地校验；模型只负责提出分类和名称，最终格式由模板决定。
@@ -43,7 +44,7 @@
 在 **插件 → 发现（Discover）→ 索引源** 添加：
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.4.4/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.5.0/market/index.json
 ```
 
 然后在列表里安装 **Session title stamp / 会话标题印章**。插件以 profile bundle 的形式安装，之后可在插件页启停。
@@ -93,7 +94,7 @@ fork 子会话、子代理会话，以及用户手动改名固定的标题都会
 
 ### 会话头按钮与悬停统计
 
-0.4.4 增加了一个很小的浏览器半边：
+0.5.0 增加了一个很小的浏览器半边：
 
 - 会话头有一个**刷新图标**，效果等同输入 `/retitle`，会话运行中禁用；
 - 鼠标悬停会话行时，在原生相对时间下面多一行：
@@ -161,7 +162,7 @@ fork 子会话、子代理会话，以及用户手动改名固定的标题都会
 不认识的占位符会**原样保留**（`{MMDD} {bogus}` 会保留 `{bogus}`），方便一眼看出模板写错，而不是悄悄消失。最终仍受 `maxTitleBytes` 截断。
 
 默认分类是中文。`categoryPreset: en` 可切到
-`Analysis / Build / Fix / Debug / QA / Deploy / Docs / Other`；`categories`
+`Analysis / Build / Fix / Optimize / Debug / QA / Release / Docs / Other`；`categories`
 可以覆盖任意预设。提示词使用配置的标签，本地兜底也会把常见中英文关键词映射过去。
 
 ## 隐私与成本
