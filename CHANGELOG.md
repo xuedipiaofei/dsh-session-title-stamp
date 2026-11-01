@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.0 — 2026-11-02
+## 0.5.0 — 2026-11-01
 
 - Intent-oriented default categories: 分析 / 实现 / 修复 / 优化 / 排查 / 验收 / 发布 / 文档 / 其他.
 - Rename 整改 → 修复 and 部署 → 发布; add 优化; update aliases, keywords, hints, and the English preset.
