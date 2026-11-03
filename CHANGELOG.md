@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.1 — 2026-11-04
+
+- Settings polish: units, the default-on badge, and extra template preview placeholders.
+- Promote hover duration/cost/token stats with a field guide and screenshot.
+
 ## 0.7.0 — 2026-11-04
 
 - Settings page for title format, category emoji, date format, template, auto-refresh cadence, and startup backfill.
