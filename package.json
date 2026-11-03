@@ -1,7 +1,7 @@
 {
   "name": "dsh-session-title-stamp",
-  "version": "0.6.0",
-  "description": "DSH session titles in a DATE | CATEGORY | NAME template, with turn-aware auto-generation, a Generate title button, and hover cost/duration.",
+  "version": "0.7.0",
+  "description": "DSH session titles in a DATE | CATEGORY | NAME template, with turn-aware auto-generation, a settings page, a Generate title button, and hover cost/duration.",
   "keywords": [
     "dsh",
     "dsh-plugin",
@@ -34,13 +34,15 @@
     "market/index.json",
     "icon.svg",
     "README.md",
-    "README.zh.md"
+    "README.zh.md",
+    "docs/0.7.0-settings-mock.png"
   ],
   "engines": {
     "dsh": ">=0.2.1-rc.3 <0.3.0"
   },
   "peerDependencies": {
-    "@deepseek-ai/dsh-session-title-llm": "^0.2.1-rc.3"
+    "@deepseek-ai/dsh-session-title-llm": "^0.2.1-rc.3",
+    "@deepseek-ai/schemastery": "^3.18.5"
   },
   "dsh": {
     "bundle": {
@@ -62,9 +64,12 @@
     "access": "public"
   },
   "scripts": {
-    "test": "node --check client.js && node test/format.test.mjs && node test/provider.test.mjs && node test/client.test.mjs && node scripts/check.mjs",
+    "test": "node --check client.js && node test/format.test.mjs && node test/provider.test.mjs && node test/client.test.mjs && node test/config.test.mjs && node scripts/check.mjs",
     "check": "node scripts/check.mjs",
     "validate:index": "node scripts/validate-index.mjs",
     "pack:check": "npm pack --dry-run"
+  },
+  "devDependencies": {
+    "@deepseek-ai/schemastery": "^3.18.5"
   }
 }

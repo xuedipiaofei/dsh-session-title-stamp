@@ -14,6 +14,7 @@ title. Beyond automatic naming:
 - **Generate title** — the conversation-header ↻ button, the session row's
   **Generate title** menu item, or `/retitle`.
 - **Copy title** — an extra item in the session `···` menu copies the full title.
+- **Settings page** — preview and change format, emoji, and refresh cadence without editing YAML.
 - **Optional category emoji** — `categoryEmoji: true` renders titles such as
   `1027 | ⚡ 优化 | ...`.
 - **Hover stats** — elapsed time, estimated CNY cost, and token count on the
@@ -63,7 +64,7 @@ and mirrors conventions used by other coding agents.
 Add this market index source in **Plugins → Discover → Index sources**:
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.6.0/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.7.0/market/index.json
 ```
 
 Then install **Session title stamp** from the list. The plugin installs as a
@@ -133,7 +134,7 @@ mode using `retitleEvery`.
 
 ### Header button and hover stats
 
-0.6.0 adds a small browser half:
+0.7.0 adds a small browser half:
 
 - a **refresh icon** in the conversation header; it runs the same `/retitle`
   command as typing it, and is disabled while the session is running.
@@ -151,6 +152,23 @@ so this plugin does **not** add a second status-color layer.
 
 If the hover line is missing, the browser half could not reach the host stats
 route; the refresh button and automatic titles are unaffected.
+
+### Settings page
+
+![Session title settings](docs/0.7.0-settings-mock.png)
+
+0.7.0 adds **Settings → Plugins → Session titles**:
+
+- a live preview of the exact title the current template will produce;
+- category language (Chinese/English), optional category emoji, date format,
+  and the title template;
+- the auto-refresh switch, minimum interval, message freeze, and opt-in startup
+  backfill, with the cost trade-off stated in place;
+- advanced name-length and recent-message controls; timeouts, budgets, and
+  model routing stay in the profile configuration.
+
+Saving writes the current profile's plugin config, so it applies to the next
+generated title without a restart. Existing titles are never rewritten.
 
 ### Failures
 
@@ -213,7 +231,8 @@ An unknown placeholder is left verbatim (`{MMDD} {bogus}` keeps `{bogus}`), so a
 typo is visible instead of silently disappearing. The template owns the final
 format; `maxTitleBytes` still clips the result.
 
-The default taxonomy is Chinese. `categoryPreset: en` switches it to
+The Settings page covers the common fields; the YAML table below remains the
+automation/advanced source. The default taxonomy is Chinese. `categoryPreset: en` switches it to
 `Analysis / Build / Fix / Optimize / Debug / QA / Release / Docs / Other`; `categories`
 overrides either preset with any labels you want. The prompt lists the configured
 labels and the local fallback maps common keywords onto them.

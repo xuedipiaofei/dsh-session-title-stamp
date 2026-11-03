@@ -33,6 +33,14 @@ assert.deepEqual(exported.inject, ['slots', 'remote', 'remote.commands', 'locale
 const registrations = []
 const ctx = {
   effect() {},
+  inject(names, callback) {
+    if (names.includes('configForms') && names.includes('slots')) {
+      callback({
+        configForms: { get: () => ({ getSnapshot: () => ({ status: 'loading' }), subscribe: () => () => {}, mutate: async () => true }) },
+        slots: ctx.slots,
+      })
+    }
+  },
   locale: {
     register() {},
     bind() {
@@ -59,6 +67,7 @@ exported.apply(ctx)
 assert.deepEqual(
   registrations.map(({ definition }) => definition.name),
   [
+    'settings.section',
     'conversation.session.header.actions',
     'sidebar.workspaces.session.menu.item',
     'sidebar.workspaces.session.menu.item',
@@ -69,5 +78,6 @@ assert.equal(typeof registrations[0].component, 'function')
 assert.equal(typeof registrations[1].component, 'function')
 assert.equal(typeof registrations[2].component, 'function')
 assert.equal(typeof registrations[3].component, 'function')
+assert.equal(typeof registrations[4].component, 'function')
 
 console.log('client tests passed')

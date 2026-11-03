@@ -4,6 +4,7 @@ This repository is already shaped as a DSH bundle and a format-1 market entry.
 
 ## Current releases
 
+- **0.7.0 (2026-11-04)**: settings page with live preview and live config writes.
 - **0.6.0 (2026-11-03)**: optional category emoji and Copy title menu item.
 - **0.5.0 (2026-11-01)**: intent-oriented default categories (修复/优化/发布).
 - **0.4.4 (2026-10-31)**: verify OIDC trusted publishing; CI publish guard.
@@ -199,7 +200,7 @@ Commit and push the index change.
 Use jsDelivr over GitHub (HTTPS, no redirects, no Pages setup):
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.6.0/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.7.0/market/index.json
 ```
 
 Prefer the tag URL: jsDelivr caches `@main` for a long time, and a cached copy

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.0 — 2026-11-04
+
+- Settings page for title format, category emoji, date format, template, auto-refresh cadence, and startup backfill.
+- Live title preview and atomic writes through the profile plugin config.
+- Host config schema with volatile fields so saves apply without a restart.
+
 ## 0.6.0 — 2026-11-03
 
 - Optional `categoryEmoji` prefixes (⚡ 优化, 🐛 修复, ...).
