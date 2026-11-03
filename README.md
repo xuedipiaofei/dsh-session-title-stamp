@@ -13,6 +13,9 @@ title. Beyond automatic naming:
   100-message freeze; forks and user-pinned titles are skipped.
 - **Generate title** — the conversation-header ↻ button, the session row's
   **Generate title** menu item, or `/retitle`.
+- **Copy title** — an extra item in the session `···` menu copies the full title.
+- **Optional category emoji** — `categoryEmoji: true` renders titles such as
+  `1027 | ⚡ 优化 | ...`.
 - **Hover stats** — elapsed time, estimated CNY cost, and token count on the
   session hover card.
 - **Category language** — `categoryPreset: zh | en`, or your own `categories`.
@@ -60,7 +63,7 @@ and mirrors conventions used by other coding agents.
 Add this market index source in **Plugins → Discover → Index sources**:
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.5.0/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.6.0/market/index.json
 ```
 
 Then install **Session title stamp** from the list. The plugin installs as a
@@ -130,14 +133,14 @@ mode using `retitleEvery`.
 
 ### Header button and hover stats
 
-0.5.0 adds a small browser half:
+0.6.0 adds a small browser half:
 
 - a **refresh icon** in the conversation header; it runs the same `/retitle`
   command as typing it, and is disabled while the session is running.
 - a **hover-card line** under the native relative time, for example
   `Duration 1h 51m · est. ≈¥4.11 · 131.7M tokens`;
-- a **Generate title** item at the top of the session row's `···` menu. It
-  runs the same `/retitle` command and adds no dialog.
+- a **Generate title** item at the top of the session row's `···` menu, plus a
+  **Copy title** item below the native Copy Session ID. Neither adds a dialog.
 
 The hover line is derived from the `sessionStats` and `tokenUsage` projections,
 priced with the current DeepSeek CNY rate table, and labelled as an estimate.
@@ -188,6 +191,7 @@ Override the row in the profile's `cordis.patch.yml`:
 | `timeZone` | host local | IANA zone used for date/time placeholders |
 | `categoryPreset` | `zh` | Built-in category language: `zh` or `en` |
 | `categories` | preset | Explicit category list; overrides `categoryPreset` |
+| `categoryEmoji` | `false` | Prefix the category with its emoji (⚡ 优化, 🐛 修复, ...) |
 | `maxNameChars` | `20` | Character cap before the byte cap applies |
 | `maxTitleBytes` | service cap (`80`) | Effective cap is the smaller of this and `session-title`'s cap |
 | `recentMessages` | `8` | First message plus this many recent messages are sent |

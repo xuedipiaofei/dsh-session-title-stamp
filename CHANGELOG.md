@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0 — 2026-11-03
+
+- Optional `categoryEmoji` prefixes (⚡ 优化, 🐛 修复, ...).
+- Add a Copy title item to the session menu.
+
 ## 0.5.0 — 2026-11-01
 
 - Intent-oriented default categories: 分析 / 实现 / 修复 / 优化 / 排查 / 验收 / 发布 / 文档 / 其他.

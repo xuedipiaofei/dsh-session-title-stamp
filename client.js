@@ -27,6 +27,8 @@ window.__ModuleLoader__.load({
         running: '会话运行中，稍后再试',
         duration: '耗时',
         estimate: '估算',
+        copyTitle: '复制标题',
+        copyHint: '复制完整会话标题',
       },
       en: {
         menu: 'Generate title',
@@ -34,6 +36,8 @@ window.__ModuleLoader__.load({
         running: 'Session is running; try again later',
         duration: 'Duration',
         estimate: 'est.',
+        copyTitle: 'Copy title',
+        copyHint: 'Copy the full session title',
       },
     }
 
@@ -205,7 +209,56 @@ window.__ModuleLoader__.load({
       )
     }
 
+    function CopyIcon() {
+      return h(
+        'svg',
+        {
+          width: 14,
+          height: 14,
+          viewBox: '0 0 16 16',
+          fill: 'none',
+          stroke: 'currentColor',
+          strokeWidth: 1.5,
+          strokeLinecap: 'round',
+          strokeLinejoin: 'round',
+          'aria-hidden': 'true',
+        },
+        h('rect', { x: 5, y: 4, width: 8, height: 9, rx: 1.5 }),
+        h('path', { d: 'M11 4V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v7A1.5 1.5 0 0 0 3.5 12H5' }),
+      )
+    }
+
+    function CopyTitleMenuItem({ displayTitle, useMenuOpenState, t }) {
+      const menuState =
+        typeof useMenuOpenState === 'function' ? useMenuOpenState() : null
+      const disabled = typeof displayTitle !== 'string' || displayTitle === ''
+      return h(
+        'button',
+        {
+          type: 'button',
+          role: 'menuitem',
+          className: 'dsh-title-menu-item',
+          disabled,
+          title: t('copyHint'),
+          onClick: async () => {
+            if (disabled) return
+            if (Array.isArray(menuState) && typeof menuState[1] === 'function') {
+              menuState[1](false)
+            }
+            try {
+              await navigator.clipboard.writeText(displayTitle)
+            } catch (error) {
+              console.warn('session-title-stamp: copy title failed', error)
+            }
+          },
+        },
+        h('span', { className: 'dsh-title-menu-icon', 'aria-hidden': 'true' }, h(CopyIcon)),
+        h('span', null, t('copyTitle')),
+      )
+    }
+
     const STYLE_ID = 'dsh-session-title-stamp-style'
+
 
     function installStyle(ctx) {
       const style = document.createElement('style')
@@ -258,6 +311,18 @@ window.__ModuleLoader__.load({
             inject: () => ({ run, t }),
           },
           RegenerateMenuItem,
+        ),
+      )
+
+      ctx.slots.inject('sidebar.workspaces.session.menu.item', () =>
+        ctx.slots.register(
+          {
+            name: 'sidebar.workspaces.session.menu.item',
+            id: 'session-title-stamp-copy',
+            order: 460,
+            inject: () => ({ t }),
+          },
+          CopyTitleMenuItem,
         ),
       )
 

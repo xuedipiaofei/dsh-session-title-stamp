@@ -61,11 +61,13 @@ assert.deepEqual(
   [
     'conversation.session.header.actions',
     'sidebar.workspaces.session.menu.item',
+    'sidebar.workspaces.session.menu.item',
     'sidebar.session.row.hover',
   ],
 )
 assert.equal(typeof registrations[0].component, 'function')
 assert.equal(typeof registrations[1].component, 'function')
 assert.equal(typeof registrations[2].component, 'function')
+assert.equal(typeof registrations[3].component, 'function')
 
 console.log('client tests passed')

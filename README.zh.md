@@ -6,6 +6,8 @@
 
 - **自动重算**：回答完成后更新，2 分钟冷却，超过 100 条消息后冻结；fork、子代理和手动固定的标题跳过。
 - **生成标题**：会话头 ↻ 按钮、会话行 `···` 菜单「自动生成标题」、或 `/retitle`。
+- **复制标题**：会话行 `···` 菜单多一项复制完整标题。
+- **可选 emoji 分类**：`categoryEmoji: true` 后标题形如 `1027 | ⚡ 优化 | ...`。
 - **悬停统计**：会话行悬停显示耗时、估算 CNY 成本、token 数。
 - **分类语言**：`categoryPreset: zh | en`，也可以用 `categories` 自定义。
 - **失败保护**：重算失败保留当前标题，不被兜底标题覆盖。
@@ -44,7 +46,7 @@
 在 **插件 → 发现（Discover）→ 索引源** 添加：
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.5.0/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.6.0/market/index.json
 ```
 
 然后在列表里安装 **Session title stamp / 会话标题印章**。插件以 profile bundle 的形式安装，之后可在插件页启停。
@@ -94,13 +96,13 @@ fork 子会话、子代理会话，以及用户手动改名固定的标题都会
 
 ### 会话头按钮与悬停统计
 
-0.5.0 增加了一个很小的浏览器半边：
+0.6.0 增加了一个很小的浏览器半边：
 
 - 会话头有一个**刷新图标**，效果等同输入 `/retitle`，会话运行中禁用；
 - 鼠标悬停会话行时，在原生相对时间下面多一行：
   `耗时 1h 51m · 估算 ≈¥4.11 · 131.7M tokens`；
-- 会话行 `···` 菜单最上面多一项「自动生成标题」；同样调用 `/retitle`，
-  不新开弹窗。
+- 会话行 `···` 菜单最上面多一项「自动生成标题」，下面多一项「复制标题」；
+  两者都不新开弹窗。
 
 数字来自 `sessionStats` / `tokenUsage` 投影，按 DeepSeek 当前 CNY 价格估算，并标注「估算」。只在悬停时向宿主请求，不会为了显示数字去恢复未加载的会话。DSH 原生已经有运行中/待交互/完成未读的状态点与 loader，所以本插件**不再加一层状态颜色**。
 
@@ -142,6 +144,7 @@ fork 子会话、子代理会话，以及用户手动改名固定的标题都会
 | `timeZone` | 本机时区 | 日期/时间占位符使用的 IANA 时区 |
 | `categoryPreset` | `zh` | 内置分类语言：`zh` 或 `en` |
 | `categories` | 预设 | 显式分类词表，优先级高于 `categoryPreset` |
+| `categoryEmoji` | `false` | 给分类加 emoji 前缀（⚡ 优化、🐛 修复……） |
 | `maxNameChars` | `20` | 名称字符上限（最终还受字节上限约束） |
 | `maxTitleBytes` | 标题服务上限（`80`） | 实际取它与 `session-title` 的较小值 |
 | `recentMessages` | `8` | 发送首条消息 + 最近 N 条消息 |

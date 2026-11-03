@@ -297,4 +297,13 @@ function turnEndEvent() {
   assert.equal(refreshCount(), 0)
 }
 
+// 13. Optional category emoji is rendered only when enabled.
+{
+  stub.reset()
+  const { provider } = setup({ config: { categoryEmoji: true } })
+  stub.reply('{"category":"优化","name":"降低渲染器内存占用"}')
+  const result = await provider.generate(request())
+  assert.equal(result.title, '1028 | ⚡ 优化 | 降低渲染器内存占用')
+}
+
 console.log('provider tests passed')
