@@ -150,6 +150,19 @@ never loaded is not resumed just to show the numbers. Native DSH already shows
 running / pending / completed-unread status (spinner, warning dot, idle line),
 so this plugin does **not** add a second status-color layer.
 
+#### Hover-card field guide
+
+| Field | Meaning |
+|---|---|
+| `Duration 1h 51m` | Cumulative model + tool execution time from `sessionStats`; not wall-clock elapsed time |
+| `est. ≈¥4.11` | `tokenUsage` × the current DeepSeek CNY rate table; a rough estimate, not an invoice |
+| `131.7M tokens` | Input, output, cache-read and cache-write tokens combined |
+| `Idle` / scheduled-task line | Native DSH status content; this plugin does not add or replace it |
+
+Mixed-model sessions are estimated with the session's last-used model, so the
+cost can differ from the actual bill. The line is intentionally omitted when the
+host has no stats for that session.
+
 If the hover line is missing, the browser half could not reach the host stats
 route; the refresh button and automatic titles are unaffected.
 
