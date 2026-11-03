@@ -359,6 +359,9 @@ window.__ModuleLoader__.load({
       previewTitle: { fontSize: '15px', lineHeight: '23px', color: 'var(--dsw-alias-label-primary, #fff)', fontWeight: 500, wordBreak: 'break-word' },
       section: { marginTop: '18px' },
       sectionTitle: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: 'var(--dsw-alias-label-caption, #737985)', letterSpacing: '.06em', textTransform: 'uppercase', margin: '0 0 2px' },
+      badge: { fontSize: '10px', lineHeight: '16px', fontWeight: 400, color: 'var(--dsw-alias-state-success-primary, #65d39a)', border: '.5px solid var(--dsw-alias-state-success-primary, #65d39a)', borderRadius: '99px', padding: '1px 7px', letterSpacing: 0, textTransform: 'none' },
+      previewRow: { display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '16px' },
+      previewGhost: { fontSize: '12px', lineHeight: '18px', color: 'var(--dsw-alias-label-caption, #737985)', whiteSpace: 'nowrap' },
       row: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px', padding: '15px 0', borderBottom: '.5px solid var(--dsw-alias-border-l2, #2b2e35)' },
       rowColumn: { display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '10px', padding: '15px 0', borderBottom: '.5px solid var(--dsw-alias-border-l2, #2b2e35)' },
       text: { minWidth: 0 },
@@ -390,7 +393,7 @@ window.__ModuleLoader__.load({
         const type = emoji ? `⚡ ${base}` : base
         const topic = preset === 'en' ? 'Reduce renderer memory usage' : '降低渲染器内存占用'
         const date = dateFormat === 'YYMM' ? '2610' : dateFormat === 'YYYYMMDD' ? '20261027' : '1027'
-        const values = { date, type, topic, YYYY: '2026', YY: '26', MM: '10', DD: '27', HH: '12', mm: '30', ss: '00' }
+        const values = { date, type, topic, MMDD: '1027', YYMM: '2610', YYYYMMDD: '20261027', HHmm: '1230', YYYY: '2026', YY: '26', MM: '10', DD: '27', HH: '12', mm: '30', ss: '00' }
         return (template || DEFAULT_TEMPLATE).replace(/\{([A-Za-z]+)\}/g, (match, key) => values[key] ?? match)
       }
 
@@ -488,11 +491,12 @@ window.__ModuleLoader__.load({
             h('span', { style: SETTINGS_STYLE.thumb(checked) }),
           )
 
-        const number = (value, onChange, min, max) =>
+        const number = (value, onChange, min, max, unit) =>
           h(
             'div',
             { style: SETTINGS_STYLE.num },
             h('input', { type: 'number', min, max, value, disabled: !writable || busy, onChange: (event) => onChange(event.target.value), style: { ...SETTINGS_STYLE.input, ...SETTINGS_STYLE.number } }),
+            unit === undefined ? null : h('span', { style: SETTINGS_STYLE.unit }, unit),
           )
 
         const save = async () => {
@@ -552,7 +556,14 @@ window.__ModuleLoader__.load({
             'div',
             { style: SETTINGS_STYLE.preview },
             h('div', { style: SETTINGS_STYLE.previewLabel }, readText('preview')),
-            h('div', { style: SETTINGS_STYLE.previewTitle }, preview),
+            h(
+              'div',
+              { style: SETTINGS_STYLE.previewRow },
+              h('div', { style: SETTINGS_STYLE.previewTitle }, preview),
+              categoryEmoji
+                ? null
+                : h('span', { style: SETTINGS_STYLE.previewGhost }, `${readText('previewHint')}：⚡ ${categoryPreset === 'en' ? 'Optimize' : '优化'}`),
+            ),
           ),
           h('div', { style: SETTINGS_STYLE.sectionTitle }, readText('format')),
           row('preset', readText('categoryLanguage'), readText('categoryLanguageHint'),
@@ -562,10 +573,10 @@ window.__ModuleLoader__.load({
             segment([{ value: 'MMDD', label: 'MMDD' }, { value: 'YYMM', label: 'YYMM' }, { value: 'YYYYMMDD', label: 'YYYYMMDD' }], dateFormat, setDateFormat)),
           row('template', readText('template'), readText('templateHint'),
             h('input', { value: template, disabled: !writable || busy, onChange: (event) => setTemplate(event.target.value), spellCheck: false, style: { ...SETTINGS_STYLE.input, ...SETTINGS_STYLE.fullInput } }), true),
-          h('div', { style: SETTINGS_STYLE.sectionTitle }, readText('auto')),
+          h('div', { style: SETTINGS_STYLE.sectionTitle }, readText('auto'), h('span', { style: SETTINGS_STYLE.badge }, readText('autoBadge'))),
           row('auto', readText('autoRefresh'), readText('autoRefreshHint'), toggle(autoRefresh, setAutoRefresh, readText('autoRefresh'))),
-          row('minutes', readText('minInterval'), readText('minIntervalHint'), number(minutes, setMinutes, 0, 60)),
-          row('freeze', readText('freeze'), readText('freezeHint'), number(freeze, setFreeze, 0, 100000)),
+          row('minutes', readText('minInterval'), readText('minIntervalHint'), number(minutes, setMinutes, 0, 60, readText('minutes'))),
+          row('freeze', readText('freeze'), readText('freezeHint'), number(freeze, setFreeze, 0, 100000, readText('messages'))),
           row('backfill', readText('backfill'), readText('backfillHint'), toggle(backfill, setBackfill, readText('backfill'))),
           h(
             'button',
@@ -575,8 +586,8 @@ window.__ModuleLoader__.load({
           ),
           advancedOpen
             ? h('div', null,
-              row('nameChars', readText('nameLimit'), readText('nameLimitHint'), number(nameChars, setNameChars, 4, 40)),
-              row('recent', readText('recentMessages'), readText('recentMessagesHint'), number(recentMessages, setRecentMessages, 2, 20)),
+              row('nameChars', readText('nameLimit'), readText('nameLimitHint'), number(nameChars, setNameChars, 4, 40, readText('chars'))),
+              row('recent', readText('recentMessages'), readText('recentMessagesHint'), number(recentMessages, setRecentMessages, 2, 20, readText('messages'))),
               h('div', { style: { ...SETTINGS_STYLE.desc, marginTop: '8px' } }, readText('advancedHint')),
             )
             : null,
