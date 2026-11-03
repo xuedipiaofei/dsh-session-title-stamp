@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><style>
+:root{--bg:#15171b;--panel:#23262c;--stroke:#343840;--text:#eceef2;--muted:#9aa0aa;--dim:#737985;--green:#65d39a}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#111318;color:var(--text);font-family:"PingFang SC","SF Pro Display","Segoe UI",system-ui,sans-serif}
+body{display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(700px 300px at 30% 0%,#252b3a 0%,transparent 60%),#111318}
+.wrap{width:640px}
+.label{font-size:11px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;margin:0 0 10px 4px}
+.card{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:18px 20px;box-shadow:0 18px 50px #0007}
+.title{font-size:17px;line-height:26px;font-weight:500;color:#fff;overflow-wrap:break-word}
+.time{margin-top:10px;font-size:13px;line-height:20px;color:var(--muted)}
+.stats{margin:12px 0 0;padding:10px 12px;border:1px solid #3a404b;border-radius:9px;background:#1b1e24;font-size:13px;line-height:20px;color:#dfe3ea;display:inline-block}
+.stats b{font-weight:500;color:#fff}
+.status{margin-top:13px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.dot{width:7px;height:7px;border-radius:50%;background:#6e7a8a}
+.note{margin:14px 0 0;font-size:12px;line-height:18px;color:var(--dim)}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label">Session hover card</div>
+  <div class="card">
+    <div class="title">1027 | 优化 | 降低渲染器内存占用</div>
+    <div class="time">13 小时前</div>
+    <div class="stats">耗时 <b>4h 54m</b> · 估算 <b>≈¥11.59</b> · <b>353.99M</b> tokens</div>
+    <div class="status"><span class="dot"></span>空闲</div>
+  </div>
+  <div class="note">耗时、估算成本和 token 数来自 sessionStats / tokenUsage；状态行是 DSH 原生内容。</div>
+</div>
+</body></html>

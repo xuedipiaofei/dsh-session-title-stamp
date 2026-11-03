@@ -17,11 +17,14 @@ title. Beyond automatic naming:
 - **Settings page** — preview and change format, emoji, and refresh cadence without editing YAML.
 - **Optional category emoji** — `categoryEmoji: true` renders titles such as
   `1027 | ⚡ 优化 | ...`.
-- **Hover stats** — elapsed time, estimated CNY cost, and token count on the
-  session hover card.
+- **Hover stats** — see duration, estimated CNY cost, and token count at a glance,
+  without opening a dashboard.
 - **Category language** — `categoryPreset: zh | en`, or your own `categories`.
 - **Failure-safe** — a failed retitle keeps the current title.
 - **Zero build** — pure Host logic plus a small hand-written browser half.
+
+> **The title tells you what the session was about; the hover card tells you what it cost.**
+> Duration, estimated CNY, and tokens are one hover away — no dashboard.
 
 Default format:
 
@@ -138,6 +141,9 @@ mode using `retitleEvery`.
 
 - a **refresh icon** in the conversation header; it runs the same `/retitle`
   command as typing it, and is disabled while the session is running.
+
+![Session hover card](docs/0.7.0-hover-card-mock.png)
+
 - a **hover-card line** under the native relative time, for example
   `Duration 1h 51m · est. ≈¥4.11 · 131.7M tokens`;
 - a **Generate title** item at the top of the session row's `···` menu, plus a
