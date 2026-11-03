@@ -58,11 +58,11 @@
       "versions": [
         {
           "version": "0.7.1",
-          "publishTimestamp": 1793721856,
+          "publishTimestamp": 1793723566,
           "source": {
             "type": "git",
             "url": "https://github.com/xuedipiaofei/dsh-session-title-stamp",
-            "commit": "e46d3544174626f922a2c1749bb300db93d01d04"
+            "commit": "a8b0c59662e0fe464f5bc5bf11ca2155a7fbe0e1"
           },
           "engines": {
             "dsh": ">=0.2.1-rc.3 <0.3.0"
