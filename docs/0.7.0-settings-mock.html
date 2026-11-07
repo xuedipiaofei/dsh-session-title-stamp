@@ -15,7 +15,7 @@
     font-family:"PingFang SC","SF Pro Display","Segoe UI",system-ui,sans-serif}
   body{display:flex;align-items:stretch;justify-content:center;padding:26px;background:
     radial-gradient(1200px 600px at 20% -10%,#232838 0%,transparent 55%),var(--bg)}
-  .window{width:1348px;height:1044px;display:flex;flex-direction:column;border:1px solid #2b2e36;
+  .window{width:1348px;height:1136px;display:flex;flex-direction:column;border:1px solid #2b2e36;
     border-radius:16px;overflow:hidden;background:var(--panel);box-shadow:0 30px 90px #0008}
   .topbar{height:58px;display:flex;align-items:center;justify-content:space-between;
     padding:0 22px;border-bottom:1px solid var(--stroke);background:#191b20}
@@ -110,6 +110,10 @@
             <div class="seg"><button class="on">中文</button><button>English</button></div>
           </div>
           <div class="row">
+            <div class="txt"><div class="t">标题语言</div><div class="d">名称使用哪种语言；分类标签仍由上面的分类语言决定。</div></div>
+            <div class="seg"><button>跟随对话</button><button class="on">中文</button><button>English</button></div>
+          </div>
+          <div class="row">
             <div class="txt"><div class="t">分类 emoji 前缀</div><div class="d">为分类增加视觉标记；默认关闭，开启后会占用少量标题字节。</div></div>
             <div class="emoji-line"><span class="ghost-preview">🔍 分析　🐛 修复　⚡ 优化</span><div class="switch"></div></div>
           </div>
@@ -143,7 +147,7 @@
           </div>
         </div>
 
-        <div class="advanced"><span class="chev">▼</span>高级：名称长度、最近消息数、超时与模型路由 <span class="dim">（在配置文件中）</span></div>
+        <div class="advanced"><span class="chev">▼</span>高级：名称长度、最近消息数、标题字节上限、超时与模型路由 <span class="dim">（在配置文件中）</span></div>
         <div class="hint">修改会写入当前 profile 的插件配置；保存后对新生成的标题生效，已有标题不变。</div>
 
         <div class="footer">

@@ -7,10 +7,11 @@
 - **自动重算**：回答完成后更新，2 分钟冷却，超过 100 条消息后冻结；fork、子代理和手动固定的标题跳过。
 - **生成标题**：会话头 ↻ 按钮、会话行 `···` 菜单「自动生成标题」、或 `/retitle`。
 - **复制标题**：会话行 `···` 菜单多一项复制完整标题。
-- **设置页**：可视化调整格式、emoji 和重算节奏，带实时预览，不用改 YAML。
+- **设置页**：可视化调整格式、emoji、标题语言和重算节奏，带实时预览，不用改 YAML。
 - **可选 emoji 分类**：`categoryEmoji: true` 后标题形如 `1027 | ⚡ 优化 | ...`。
 - **悬停统计**：不打开面板，一眼看到耗时、估算 CNY 成本、token 数。
 - **分类语言**：`categoryPreset: zh | en`，也可以用 `categories` 自定义。
+- **标题语言**：名称可跟随对话，也可强制中文/English。
 - **失败保护**：重算失败保留当前标题，不被兜底标题覆盖。
 - **零构建**：纯 Host 逻辑 + 小型手写浏览器半边。
 
@@ -50,7 +51,7 @@
 在 **插件 → 发现（Discover）→ 索引源** 添加：
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.7.1/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.0/market/index.json
 ```
 
 然后在列表里安装 **Session title stamp / 会话标题印章**。插件以 profile bundle 的形式安装，之后可在插件页启停。
@@ -133,9 +134,11 @@ fork 子会话、子代理会话，以及用户手动改名固定的标题都会
 0.7.0 增加 **设置 → 插件设置 → 会话标题**：
 
 - 顶部实时预览当前模板会生成的标题；
-- 分类语言（中文/English）、可选分类 emoji、日期格式、标题模板；
+- 分类语言（中文/English）、标题语言、可选分类 emoji、日期格式、标题模板；
 - 自动重算开关、最小间隔、消息数冻结、启动补刷，并把额外模型成本写在说明里；
-- 高级项只放名称长度和最近消息数；超时、预算、模型路由仍在配置文件里。
+- 高级项放名称长度、最近消息数和标题字节上限；超时、预算、模型路由仍在配置文件里。
+
+0.8.0 增加标题语言选择与高级字节上限。
 
 保存会写入当前 profile 的插件配置，对下一次生成的标题生效，不需要重启；已有标题不会被改写。
 
@@ -174,6 +177,7 @@ fork 子会话、子代理会话，以及用户手动改名固定的标题都会
 | `dateFormat` | `MMDD` | `{date}` 使用：`MMDD`（`1028`）/ `YYMM`（`2610`）/ `YYYYMMDD` |
 | `timeZone` | 本机时区 | 日期/时间占位符使用的 IANA 时区 |
 | `categoryPreset` | `zh` | 内置分类语言：`zh` 或 `en` |
+| `titleLanguage` | `auto` | 名称语言：`auto`、`zh` 或 `en` |
 | `categories` | 预设 | 显式分类词表，优先级高于 `categoryPreset` |
 | `categoryEmoji` | `false` | 给分类加 emoji 前缀（⚡ 优化、🐛 修复……） |
 | `maxNameChars` | `20` | 名称字符上限（最终还受字节上限约束） |

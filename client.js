@@ -38,6 +38,14 @@ window.__ModuleLoader__.load({
         'settings.format': '标题格式',
         'settings.categoryLanguage': '分类语言',
         'settings.categoryLanguageHint': '中文使用「分析 / 实现 / 修复 / 优化…」，英文使用 Analysis / Build / Fix / Optimize…',
+        'settings.titleLanguage': '标题语言',
+        'settings.titleLanguageHint': '名称使用哪种语言；分类标签仍由上面的分类语言决定。',
+        'settings.langAuto': '跟随对话',
+        'settings.langZh': '中文',
+        'settings.langEn': 'English',
+        'settings.maxBytes': '标题最大字节数',
+        'settings.maxBytesHint': '1–80，最终还受标题服务上限约束。',
+        'settings.bytes': '字节',
         'settings.categoryEmoji': '分类 emoji 前缀',
         'settings.categoryEmojiHint': '为分类增加视觉标记；默认关闭，开启后会占用少量标题字节。',
         'settings.dateFormat': '日期格式',
@@ -89,6 +97,14 @@ window.__ModuleLoader__.load({
         'settings.format': 'Title format',
         'settings.categoryLanguage': 'Category language',
         'settings.categoryLanguageHint': 'Chinese uses 分析 / 实现 / 修复 / 优化…; English uses Analysis / Build / Fix / Optimize…',
+        'settings.titleLanguage': 'Title language',
+        'settings.titleLanguageHint': 'Language for the name; category labels still follow the category language above.',
+        'settings.langAuto': 'Follow chat',
+        'settings.langZh': 'Chinese',
+        'settings.langEn': 'English',
+        'settings.maxBytes': 'Maximum title bytes',
+        'settings.maxBytesHint': '1–80, still capped by the title service limit.',
+        'settings.bytes': 'bytes',
         'settings.categoryEmoji': 'Category emoji prefix',
         'settings.categoryEmojiHint': 'Adds a visual marker and a few title bytes. Off by default.',
         'settings.dateFormat': 'Date format',
@@ -388,10 +404,11 @@ window.__ModuleLoader__.load({
       const h = React.createElement
       const DEFAULT_TEMPLATE = '{date} | {type} | {topic}'
       const readText = (key) => t(`settings.${key}`)
-      const sample = (preset, emoji, dateFormat, template) => {
+      const sample = (preset, emoji, dateFormat, template, titleLanguage) => {
         const base = preset === 'en' ? 'Optimize' : '优化'
         const type = emoji ? `⚡ ${base}` : base
-        const topic = preset === 'en' ? 'Reduce renderer memory usage' : '降低渲染器内存占用'
+        const topicLanguage = titleLanguage === 'auto' ? (preset === 'en' ? 'en' : 'zh') : titleLanguage
+        const topic = topicLanguage === 'en' ? 'Reduce renderer memory usage' : '降低渲染器内存占用'
         const date = dateFormat === 'YYMM' ? '2610' : dateFormat === 'YYYYMMDD' ? '20261027' : '1027'
         const values = { date, type, topic, MMDD: '1027', YYMM: '2610', YYYYMMDD: '20261027', HHmm: '1230', YYYY: '2026', YY: '26', MM: '10', DD: '27', HH: '12', mm: '30', ss: '00' }
         return (template || DEFAULT_TEMPLATE).replace(/\{([A-Za-z]+)\}/g, (match, key) => values[key] ?? match)
@@ -406,6 +423,7 @@ window.__ModuleLoader__.load({
         const stored = snapshot.value ?? {}
         const storedPreset = stored.categoryPreset === 'en' ? 'en' : 'zh'
         const storedEmoji = stored.categoryEmoji === true
+        const storedTitleLanguage = ['zh', 'en'].includes(stored.titleLanguage) ? stored.titleLanguage : 'auto'
         const storedDateFormat = ['MMDD', 'YYMM', 'YYYYMMDD'].includes(stored.dateFormat) ? stored.dateFormat : 'MMDD'
         const storedTemplate = typeof stored.template === 'string' && stored.template.trim() !== '' ? stored.template.trim() : DEFAULT_TEMPLATE
         const storedAuto = stored.refreshOnTurnEnd !== false
@@ -414,9 +432,11 @@ window.__ModuleLoader__.load({
         const storedBackfill = stored.backfillOnStart === true
         const storedNameChars = String(Number.isFinite(stored.maxNameChars) ? stored.maxNameChars : 20)
         const storedRecent = String(Number.isFinite(stored.recentMessages) ? stored.recentMessages : 8)
+        const storedMaxTitleBytes = String(Number.isFinite(stored.maxTitleBytes) ? stored.maxTitleBytes : 80)
 
         const [categoryPreset, setCategoryPreset] = React.useState(storedPreset)
         const [categoryEmoji, setCategoryEmoji] = React.useState(storedEmoji)
+        const [titleLanguage, setTitleLanguage] = React.useState(storedTitleLanguage)
         const [dateFormat, setDateFormat] = React.useState(storedDateFormat)
         const [template, setTemplate] = React.useState(storedTemplate)
         const [autoRefresh, setAutoRefresh] = React.useState(storedAuto)
@@ -425,12 +445,14 @@ window.__ModuleLoader__.load({
         const [backfill, setBackfill] = React.useState(storedBackfill)
         const [nameChars, setNameChars] = React.useState(storedNameChars)
         const [recentMessages, setRecentMessages] = React.useState(storedRecent)
+        const [maxTitleBytes, setMaxTitleBytes] = React.useState(storedMaxTitleBytes)
         const [advancedOpen, setAdvancedOpen] = React.useState(false)
         const [saveState, setSaveState] = React.useState('idle')
 
         React.useEffect(() => {
           setCategoryPreset(storedPreset)
           setCategoryEmoji(storedEmoji)
+          setTitleLanguage(storedTitleLanguage)
           setDateFormat(storedDateFormat)
           setTemplate(storedTemplate)
           setAutoRefresh(storedAuto)
@@ -439,6 +461,7 @@ window.__ModuleLoader__.load({
           setBackfill(storedBackfill)
           setNameChars(storedNameChars)
           setRecentMessages(storedRecent)
+          setMaxTitleBytes(storedMaxTitleBytes)
         }, [snapshot.revision])
 
         const busy = saveState === 'saving'
@@ -446,6 +469,7 @@ window.__ModuleLoader__.load({
         const dirty =
           categoryPreset !== storedPreset ||
           categoryEmoji !== storedEmoji ||
+          titleLanguage !== storedTitleLanguage ||
           dateFormat !== storedDateFormat ||
           template !== storedTemplate ||
           autoRefresh !== storedAuto ||
@@ -453,7 +477,8 @@ window.__ModuleLoader__.load({
           freeze !== storedFreeze ||
           backfill !== storedBackfill ||
           nameChars !== storedNameChars ||
-          recentMessages !== storedRecent
+          recentMessages !== storedRecent ||
+          maxTitleBytes !== storedMaxTitleBytes
 
         const row = (key, title, desc, control, column = false) =>
           h(
@@ -506,12 +531,14 @@ window.__ModuleLoader__.load({
           const parsedFreeze = Math.max(0, Math.min(100000, Number.parseInt(freeze, 10) || 0))
           const parsedName = Math.max(4, Math.min(40, Number.parseInt(nameChars, 10) || 20))
           const parsedRecent = Math.max(2, Math.min(20, Number.parseInt(recentMessages, 10) || 8))
+          const parsedMaxTitleBytes = Math.max(1, Math.min(80, Number.parseInt(maxTitleBytes, 10) || 80))
           const nextTemplate = template.trim() === '' ? DEFAULT_TEMPLATE : template.trim()
           try {
             const ok = await form.mutate(
               [
                 { op: 'set', path: ['categoryPreset'], value: categoryPreset },
                 { op: 'set', path: ['categoryEmoji'], value: categoryEmoji },
+                { op: 'set', path: ['titleLanguage'], value: titleLanguage },
                 { op: 'set', path: ['dateFormat'], value: dateFormat },
                 { op: 'set', path: ['template'], value: nextTemplate },
                 { op: 'set', path: ['refreshOnTurnEnd'], value: autoRefresh },
@@ -520,6 +547,7 @@ window.__ModuleLoader__.load({
                 { op: 'set', path: ['backfillOnStart'], value: backfill },
                 { op: 'set', path: ['maxNameChars'], value: parsedName },
                 { op: 'set', path: ['recentMessages'], value: parsedRecent },
+                { op: 'set', path: ['maxTitleBytes'], value: parsedMaxTitleBytes },
               ],
               snapshot.revision,
             )
@@ -532,6 +560,7 @@ window.__ModuleLoader__.load({
         const restore = () => {
           setCategoryPreset('zh')
           setCategoryEmoji(false)
+          setTitleLanguage('auto')
           setDateFormat('MMDD')
           setTemplate(DEFAULT_TEMPLATE)
           setAutoRefresh(true)
@@ -540,13 +569,14 @@ window.__ModuleLoader__.load({
           setBackfill(false)
           setNameChars('20')
           setRecentMessages('8')
+          setMaxTitleBytes('80')
           setSaveState('idle')
         }
 
         if (snapshot.status === 'loading') return h('div', { style: SETTINGS_STYLE.desc }, readText('loading'))
         if (snapshot.status === 'unavailable') return h('div', { style: SETTINGS_STYLE.desc }, readText('unavailable'))
 
-        const preview = sample(categoryPreset, categoryEmoji, dateFormat, template)
+        const preview = sample(categoryPreset, categoryEmoji, dateFormat, template, titleLanguage)
         return h(
           'div',
           { style: SETTINGS_STYLE.page },
@@ -568,6 +598,8 @@ window.__ModuleLoader__.load({
           h('div', { style: SETTINGS_STYLE.sectionTitle }, readText('format')),
           row('preset', readText('categoryLanguage'), readText('categoryLanguageHint'),
             segment([{ value: 'zh', label: '中文' }, { value: 'en', label: 'English' }], categoryPreset, setCategoryPreset)),
+          row('language', readText('titleLanguage'), readText('titleLanguageHint'),
+            segment([{ value: 'auto', label: readText('langAuto') }, { value: 'zh', label: readText('langZh') }, { value: 'en', label: readText('langEn') }], titleLanguage, setTitleLanguage)),
           row('emoji', readText('categoryEmoji'), readText('categoryEmojiHint'), toggle(categoryEmoji, setCategoryEmoji, readText('categoryEmoji'))),
           row('date', readText('dateFormat'), readText('dateFormatHint'),
             segment([{ value: 'MMDD', label: 'MMDD' }, { value: 'YYMM', label: 'YYMM' }, { value: 'YYYYMMDD', label: 'YYYYMMDD' }], dateFormat, setDateFormat)),
@@ -588,6 +620,7 @@ window.__ModuleLoader__.load({
             ? h('div', null,
               row('nameChars', readText('nameLimit'), readText('nameLimitHint'), number(nameChars, setNameChars, 4, 40, readText('chars'))),
               row('recent', readText('recentMessages'), readText('recentMessagesHint'), number(recentMessages, setRecentMessages, 2, 20, readText('messages'))),
+              row('bytes', readText('maxBytes'), readText('maxBytesHint'), number(maxTitleBytes, setMaxTitleBytes, 1, 80, readText('bytes'))),
               h('div', { style: { ...SETTINGS_STYLE.desc, marginTop: '8px' } }, readText('advancedHint')),
             )
             : null,

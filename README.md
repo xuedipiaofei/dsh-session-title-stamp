@@ -14,12 +14,13 @@ title. Beyond automatic naming:
 - **Generate title** — the conversation-header ↻ button, the session row's
   **Generate title** menu item, or `/retitle`.
 - **Copy title** — an extra item in the session `···` menu copies the full title.
-- **Settings page** — preview and change format, emoji, and refresh cadence without editing YAML.
+- **Settings page** — preview and change format, emoji, title language, and refresh cadence without editing YAML.
 - **Optional category emoji** — `categoryEmoji: true` renders titles such as
   `1027 | ⚡ 优化 | ...`.
 - **Hover stats** — see duration, estimated CNY cost, and token count at a glance,
   without opening a dashboard.
 - **Category language** — `categoryPreset: zh | en`, or your own `categories`.
+- **Title language** — names can follow the conversation, or be forced to Chinese/English.
 - **Failure-safe** — a failed retitle keeps the current title.
 - **Zero build** — pure Host logic plus a small hand-written browser half.
 
@@ -67,7 +68,7 @@ and mirrors conventions used by other coding agents.
 Add this market index source in **Plugins → Discover → Index sources**:
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.7.1/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.0/market/index.json
 ```
 
 Then install **Session title stamp** from the list. The plugin installs as a
@@ -179,12 +180,14 @@ route; the refresh button and automatic titles are unaffected.
 0.7.0 adds **Settings → Plugins → Session titles**:
 
 - a live preview of the exact title the current template will produce;
-- category language (Chinese/English), optional category emoji, date format,
-  and the title template;
+- category language (Chinese/English), title language, optional category emoji,
+  date format, and the title template;
 - the auto-refresh switch, minimum interval, message freeze, and opt-in startup
   backfill, with the cost trade-off stated in place;
-- advanced name-length and recent-message controls; timeouts, budgets, and
-  model routing stay in the profile configuration.
+- advanced name-length, recent-message, and title-byte controls; timeouts,
+  budgets, and model routing stay in the profile configuration.
+
+0.8.0 adds the title-language choice and the advanced byte limit.
 
 Saving writes the current profile's plugin config, so it applies to the next
 generated title without a restart. Existing titles are never rewritten.
@@ -227,6 +230,7 @@ Override the row in the profile's `cordis.patch.yml`:
 | `dateFormat` | `MMDD` | Used by `{date}`: `MMDD` (`1028`), `YYMM` (`2610`), or `YYYYMMDD` |
 | `timeZone` | host local | IANA zone used for date/time placeholders |
 | `categoryPreset` | `zh` | Built-in category language: `zh` or `en` |
+| `titleLanguage` | `auto` | Name language: `auto`, `zh`, or `en` |
 | `categories` | preset | Explicit category list; overrides `categoryPreset` |
 | `categoryEmoji` | `false` | Prefix the category with its emoji (⚡ 优化, 🐛 修复, ...) |
 | `maxNameChars` | `20` | Character cap before the byte cap applies |

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.0 — 2026-11-07
+
+- `titleLanguage: auto | zh | en` in the settings page and config.
+- Advanced title-byte limit control in settings.
+
 ## 0.7.1 — 2026-11-04
 
 - Settings polish: units, the default-on badge, and extra template preview placeholders.

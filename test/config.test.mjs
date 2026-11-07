@@ -4,6 +4,8 @@ import { Config } from '../lib/index.js'
 const plain = Config({})
 assert.equal(plain.categoryPreset.get(), 'zh')
 assert.equal(plain.categoryEmoji.get(), false)
+assert.equal(plain.titleLanguage.get(), 'auto')
+assert.equal(plain.maxTitleBytes.get(), 80)
 assert.equal(plain.dateFormat.get(), 'MMDD')
 assert.equal(plain.refreshOnTurnEnd.get(), true)
 assert.equal(plain.refreshMinIntervalMs.get(), 120000)
@@ -15,6 +17,7 @@ assert.equal(plain.recentMessages.get(), 8)
 const custom = Config({
   categoryPreset: 'en',
   categoryEmoji: true,
+  titleLanguage: 'en',
   dateFormat: 'YYMM',
   template: '{topic} | {type}',
   refreshOnTurnEnd: false,
@@ -26,6 +29,7 @@ const custom = Config({
 })
 assert.equal(custom.categoryPreset.get(), 'en')
 assert.equal(custom.categoryEmoji.get(), true)
+assert.equal(custom.titleLanguage.get(), 'en')
 assert.equal(custom.dateFormat.get(), 'YYMM')
 assert.equal(custom.template.get(), '{topic} | {type}')
 assert.equal(custom.refreshOnTurnEnd.get(), false)
