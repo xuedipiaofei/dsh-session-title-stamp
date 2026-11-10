@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.1 — 2026-11-10
+
+- Three marketplace screenshots and a README screenshot gallery.
+- Package both screenshot sets so the npm README renders them.
+
 ## 0.8.0 — 2026-11-07
 
 - `titleLanguage: auto | zh | en` in the settings page and config.

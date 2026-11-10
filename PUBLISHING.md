@@ -4,6 +4,7 @@ This repository is already shaped as a DSH bundle and a format-1 market entry.
 
 ## Current releases
 
+- **0.8.1 (2026-11-10)**: screenshots gallery and packaged screenshots.
 - **0.8.0 (2026-11-07)**: title language and settings byte limit.
 - **0.7.1 (2026-11-04)**: settings polish, hover-card field guide, docs/screenshots.
 - **0.7.0 (2026-11-04)**: settings page with live preview and live config writes.
@@ -202,7 +203,7 @@ Commit and push the index change.
 Use jsDelivr over GitHub (HTTPS, no redirects, no Pages setup):
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.0/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.1/market/index.json
 ```
 
 Prefer the tag URL: jsDelivr caches `@main` for a long time, and a cached copy
