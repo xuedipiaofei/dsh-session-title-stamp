@@ -48,6 +48,12 @@ locally. The model only proposes the category and the name; the provider owns
 the final format. The default taxonomy is Chinese; set `categoryPreset: en` for
 the English labels above.
 
+## Screenshots
+
+| Titles at a glance | Settings | Hover stats |
+|---|---|---|
+| <img src="docs/screenshots/01-session-list.png" width="320" alt="Date, category and name titles in the session list"> | <img src="docs/screenshots/02-settings.png" width="320" alt="Session title settings page"> | <img src="docs/screenshots/03-hover-stats.png" width="320" alt="Hover card with duration, estimated cost and tokens"> |
+
 ## Why
 
 Long-lived workspaces collect dozens of sessions whose titles are either the

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><style>
+:root{--bg:#14161a;--panel:#1b1d22;--stroke:#2e323a;--text:#eceef2;--muted:#9aa0aa;--dim:#6e7480;--brand:#6f96ff}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:radial-gradient(900px 500px at 20% 0%,#232a3b 0%,transparent 60%),var(--bg);color:var(--text);font-family:"PingFang SC","SF Pro Display","Segoe UI",system-ui,sans-serif}
+body{display:flex;align-items:center;justify-content:center;padding:26px}
+.shell{width:1080px;display:flex;gap:20px}
+.side{width:620px;background:var(--panel);border:1px solid var(--stroke);border-radius:16px;overflow:hidden;box-shadow:0 24px 70px #0007}
+.head{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-bottom:1px solid var(--stroke);background:#191b20}
+.logo{font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff}
+.tools{color:var(--dim);font-size:15px;letter-spacing:3px}
+.group{padding:14px 12px 20px}
+.groupname{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;margin:4px 8px 10px}
+.folder{color:#6f96ff}
+.row{height:38px;display:flex;align-items:center;gap:9px;padding:0 10px;border-radius:9px;color:#dfe3ea;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .dot{width:6px;height:6px;border-radius:50%;background:#5c6470;flex:none;margin-left:4px}
+.row .title{overflow:hidden;text-overflow:ellipsis}
+.row.active{background:#272c36;box-shadow:inset 2px 0 0 var(--brand)}
+.row .time{margin-left:auto;color:var(--dim);font-size:10px}
+.tag{display:inline-flex;padding:1px 6px;border:1px solid #3a404b;border-radius:99px;color:#9aa0aa;font-size:10px;margin-left:6px}
+.card{width:400px;align-self:flex-start;margin-top:40px;background:#23262c;border:1px solid #343840;border-radius:13px;padding:16px 17px;box-shadow:0 18px 45px #0008}
+.card .t{font-size:15px;line-height:23px;color:#fff;font-weight:500}
+.card .time{margin-top:7px;color:#9aa0aa;font-size:12px}
+.card .stats{margin-top:10px;padding:8px 10px;border:1px solid #3b424d;border-radius:8px;background:#1b1e24;color:#dfe3ea;font-size:12px;line-height:19px;white-space:nowrap}
+.card .stats b{color:#fff;font-weight:500}
+.status{margin-top:11px;display:flex;align-items:center;gap:7px;color:#9aa0aa;font-size:12px}
+.status i{width:6px;height:6px;border-radius:50%;background:#6e7a8a}
+.note{margin-top:12px;color:#737985;font-size:11px;line-height:17px}
+</style></head><body>
+<div class="shell">
+  <div class="side">
+    <div class="head"><span class="logo">▣  DSH / workspace</span><span class="tools">⋯</span></div>
+    <div class="group">
+      <div class="groupname"><span class="folder">▱</span> simulator</div>
+      <div class="row"><span class="dot"></span><span class="title">1027 | 优化 | 降低渲染器内存占用</span><span class="time">13 小时前</span></div>
+      <div class="row active"><span class="dot"></span><span class="title">1027 | 修复 | 排查登录接口 401</span><span class="time">2 分钟前</span></div>
+      <div class="row"><span class="dot"></span><span class="title">1027 | 发布 | Ubuntu 环境初始化</span><span class="time">1 天前</span></div>
+      <div class="row"><span class="dot"></span><span class="title">1027 | 文档 | DSH 插件推荐评估</span><span class="time">2 天前</span></div>
+      <div class="row"><span class="dot"></span><span class="title">1027 | 验收 | 四台设备第十题验收返修</span><span class="time">3 天前</span></div>
+    </div>
+    <div class="group" style="padding-top:0">
+      <div class="groupname"><span class="folder">▱</span> 默认工作区</div>
+      <div class="row"><span class="dot"></span><span class="title">1009 | 实现 | 会话自动分类命名插件</span><span class="time">10 分钟前</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="t">1027 | 修复 | 排查登录接口 401</div>
+    <div class="time">2 分钟前</div>
+    <div class="stats"><b>耗时 4h 54m</b> · 估算 <b>≈¥11.59</b> · <b>353.99M</b> tokens</div>
+    <div class="status"><i></i>空闲</div>
+    <div class="note">标题一眼看懂；悬停直接看到这次会话投入了多少。</div>
+  </div>
+</div>
+</body></html>

@@ -36,7 +36,10 @@
     "README.md",
     "README.zh.md",
     "docs/0.7.0-settings-mock.png",
-    "docs/0.7.0-hover-card-mock.png"
+    "docs/0.7.0-hover-card-mock.png",
+    "docs/screenshots/01-session-list.png",
+    "docs/screenshots/02-settings.png",
+    "docs/screenshots/03-hover-stats.png"
   ],
   "engines": {
     "dsh": ">=0.2.1-rc.3 <0.3.0"

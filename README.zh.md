@@ -35,6 +35,12 @@
 
 日期由插件从**会话创建时间**计算，不交给模型；分类只能从可配置词表中选择，并在本地校验；模型只负责提出分类和名称，最终格式由模板决定。
 
+## 截图
+
+| 标题一眼看懂 | 设置页 | 悬停统计 |
+|---|---|---|
+| <img src="docs/screenshots/01-session-list.png" width="320" alt="侧栏里的日期、分类、名称标题"> | <img src="docs/screenshots/02-settings.png" width="320" alt="会话标题设置页"> | <img src="docs/screenshots/03-hover-stats.png" width="320" alt="悬停卡片显示耗时、估算成本和 token"> |
+
 ## 为什么
 
 工作区里的会话一多，侧栏标题要么是首条消息的前几个字，要么是容易漂移的自动摘要。固定成 `日期 | 分类 | 名称` 后，跨项目扫侧栏会快很多，也和其它 coding agent 的命名习惯一致。
