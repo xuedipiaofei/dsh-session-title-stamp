@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Lead the marketplace listing with one-click **Generate title**; the first
+  screenshot now shows the session menu entry.
+
 ## 0.8.1 — 2026-11-10
 
 - Three marketplace screenshots and a README screenshot gallery.

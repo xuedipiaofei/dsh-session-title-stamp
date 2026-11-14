@@ -4,8 +4,8 @@
 
 给 DSH 会话一个稳定的「日期 | 分类 | 名称」标题。除了自动命名，还包括：
 
+- **一键重新生成**：会话头 ↻ 按钮、会话行 `···` 菜单「自动生成标题」，或 `/retitle`；点一下就地改名，不弹窗。
 - **自动重算**：回答完成后更新，2 分钟冷却，超过 100 条消息后冻结；fork、子代理和手动固定的标题跳过。
-- **生成标题**：会话头 ↻ 按钮、会话行 `···` 菜单「自动生成标题」、或 `/retitle`。
 - **复制标题**：会话行 `···` 菜单多一项复制完整标题。
 - **设置页**：可视化调整格式、emoji、标题语言和重算节奏，带实时预览，不用改 YAML。
 - **可选 emoji 分类**：`categoryEmoji: true` 后标题形如 `1027 | ⚡ 优化 | ...`。
@@ -14,6 +14,8 @@
 - **标题语言**：名称可跟随对话，也可强制中文/English。
 - **失败保护**：重算失败保留当前标题，不被兜底标题覆盖。
 - **零构建**：纯 Host 逻辑 + 小型手写浏览器半边。
+
+自动标题只是提议：不合适就点 ↻，就地重新命名，不用改设置。
 
 > **标题告诉你这个会话在做什么，悬停卡片告诉你它花了多少。**
 > 耗时、估算 CNY 成本和 token 数，悬停即见，不需要打开面板。
@@ -37,9 +39,9 @@
 
 ## 截图
 
-| 标题一眼看懂 | 设置页 | 悬停统计 |
+| 标题与重新生成 | 设置页 | 悬停统计 |
 |---|---|---|
-| <img src="docs/screenshots/01-session-list.png" width="320" alt="侧栏里的日期、分类、名称标题"> | <img src="docs/screenshots/02-settings.png" width="320" alt="会话标题设置页"> | <img src="docs/screenshots/03-hover-stats.png" width="320" alt="悬停卡片显示耗时、估算成本和 token"> |
+| <img src="docs/screenshots/01-session-list.png" width="320" alt="侧栏里的日期、分类、名称标题，以及「自动生成标题」菜单"> | <img src="docs/screenshots/02-settings.png" width="320" alt="会话标题设置页"> | <img src="docs/screenshots/03-hover-stats.png" width="320" alt="悬停卡片显示耗时、估算成本和 token"> |
 
 ## 为什么
 

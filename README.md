@@ -9,10 +9,11 @@ English | [中文](./README.zh.md)
 A DeepSeek Harness title provider for a configurable `DATE | CATEGORY | NAME`
 title. Beyond automatic naming:
 
+- **Generate title on demand** — the conversation-header ↻ button, the session
+  row's **Generate title** menu item, or `/retitle`. One click renames the
+  session in place, no dialog.
 - **Auto refresh** — after a completed turn, with a 2-minute cooldown and a
   100-message freeze; forks and user-pinned titles are skipped.
-- **Generate title** — the conversation-header ↻ button, the session row's
-  **Generate title** menu item, or `/retitle`.
 - **Copy title** — an extra item in the session `···` menu copies the full title.
 - **Settings page** — preview and change format, emoji, title language, and refresh cadence without editing YAML.
 - **Optional category emoji** — `categoryEmoji: true` renders titles such as
@@ -23,6 +24,9 @@ title. Beyond automatic naming:
 - **Title language** — names can follow the conversation, or be forced to Chinese/English.
 - **Failure-safe** — a failed retitle keeps the current title.
 - **Zero build** — pure Host logic plus a small hand-written browser half.
+
+An automatic name is a proposal, not a verdict: when it misses the point, hit ↻
+and the same session is renamed in place.
 
 > **The title tells you what the session was about; the hover card tells you what it cost.**
 > Duration, estimated CNY, and tokens are one hover away — no dashboard.
@@ -50,9 +54,9 @@ the English labels above.
 
 ## Screenshots
 
-| Titles at a glance | Settings | Hover stats |
+| Titles and Generate title | Settings | Hover stats |
 |---|---|---|
-| <img src="docs/screenshots/01-session-list.png" width="320" alt="Date, category and name titles in the session list"> | <img src="docs/screenshots/02-settings.png" width="320" alt="Session title settings page"> | <img src="docs/screenshots/03-hover-stats.png" width="320" alt="Hover card with duration, estimated cost and tokens"> |
+| <img src="docs/screenshots/01-session-list.png" width="320" alt="Session list with the Generate title menu open"> | <img src="docs/screenshots/02-settings.png" width="320" alt="Session title settings page"> | <img src="docs/screenshots/03-hover-stats.png" width="320" alt="Hover card with duration, estimated cost and tokens"> |
 
 ## Why
 
