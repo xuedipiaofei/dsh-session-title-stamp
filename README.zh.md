@@ -39,9 +39,11 @@
 
 ## 截图
 
-| 标题与重新生成 | 设置页 | 悬停统计 |
-|---|---|---|
-| <img src="docs/screenshots/01-session-list.png" width="320" alt="侧栏里的日期、分类、名称标题，以及「自动生成标题」菜单"> | <img src="docs/screenshots/02-settings.png" width="320" alt="会话标题设置页"> | <img src="docs/screenshots/03-hover-stats.png" width="320" alt="悬停卡片显示耗时、估算成本和 token"> |
+| 会话头一键重新生成 | 会话菜单「自动生成标题」 |
+|:---:|:---:|
+| <img src="docs/screenshots/00-generate-title.png" width="360" alt="会话头里的「重新生成标题」刷新按钮"> | <img src="docs/screenshots/01-session-list.png" width="360" alt="侧栏会话行的「自动生成标题」菜单"> |
+| **悬停统计** | **设置页** |
+| <img src="docs/screenshots/03-hover-stats.png" width="360" alt="悬停卡片显示耗时、估算成本和 token"> | <img src="docs/screenshots/02-settings.png" width="360" alt="会话标题设置页"> |
 
 ## 为什么
 
@@ -59,7 +61,7 @@
 在 **插件 → 发现（Discover）→ 索引源** 添加：
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.2/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.3/market/index.json
 ```
 
 然后在列表里安装 **Session title stamp / 会话标题印章**。插件以 profile bundle 的形式安装，之后可在插件页启停。

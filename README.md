@@ -54,9 +54,11 @@ the English labels above.
 
 ## Screenshots
 
-| Titles and Generate title | Settings | Hover stats |
-|---|---|---|
-| <img src="docs/screenshots/01-session-list.png" width="320" alt="Session list with the Generate title menu open"> | <img src="docs/screenshots/02-settings.png" width="320" alt="Session title settings page"> | <img src="docs/screenshots/03-hover-stats.png" width="320" alt="Hover card with duration, estimated cost and tokens"> |
+| One-click Generate title | Generate title in the session menu |
+|:---:|:---:|
+| <img src="docs/screenshots/00-generate-title.png" width="360" alt="Conversation header with the Generate title refresh button"> | <img src="docs/screenshots/01-session-list.png" width="360" alt="Session list with the Generate title menu open"> |
+| **Hover stats** | **Settings page** |
+| <img src="docs/screenshots/03-hover-stats.png" width="360" alt="Hover card with duration, estimated cost and tokens"> | <img src="docs/screenshots/02-settings.png" width="360" alt="Session title settings page"> |
 
 ## Why
 
@@ -78,7 +80,7 @@ and mirrors conventions used by other coding agents.
 Add this market index source in **Plugins → Discover → Index sources**:
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.2/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.3/market/index.json
 ```
 
 Then install **Session title stamp** from the list. The plugin installs as a

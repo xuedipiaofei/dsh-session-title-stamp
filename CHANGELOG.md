@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.3 — 2026-11-16
+
+- New conversation-header screenshot for one-click Generate title; both action
+  screenshots now lead the marketplace gallery.
+
 ## 0.8.2 — 2026-11-15
 
 - Lead the marketplace listing with one-click **Generate title**; the first
