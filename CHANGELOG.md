@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.8.2 — 2026-11-15
 
 - Lead the marketplace listing with one-click **Generate title**; the first
   screenshot now shows the session menu entry.
