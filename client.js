@@ -675,6 +675,50 @@ window.__ModuleLoader__.load({
       ctx.effect?.(() => () => style.remove())
     }
 
+    const SESSION_MENU_ICON_KEY = 'session-title-stamp.retitle'
+
+    /** The context-menu service exists from DSH 0.2.2 on; older hosts keep the legacy Slot row. */
+    function sessionMenuService(ctx) {
+      try {
+        return typeof ctx.get === 'function' ? ctx.get('contextMenus') : undefined
+      } catch {
+        return undefined
+      }
+    }
+
+    function registerSessionMenuAction(scope, menus, { run, t }) {
+      try {
+        scope.slots.inject('contextMenu.icon', () =>
+          scope.slots.register({ name: 'contextMenu.icon', key: SESSION_MENU_ICON_KEY }, RefreshIcon),
+        )
+        scope.effect?.(() =>
+          menus.register({
+            id: 'session-title-stamp.retitle',
+            target: 'session',
+            order: 10,
+            resolve: ({ sessionId }) => [
+              {
+                id: 'retitle',
+                label: t('menu'),
+                icon: { key: SESSION_MENU_ICON_KEY },
+                run: async () => {
+                  try {
+                    await run(sessionId)
+                  } catch (error) {
+                    menus.notify?.(String(error?.message ?? error), false)
+                  }
+                },
+              },
+            ],
+          }),
+        )
+        return true
+      } catch (error) {
+        console.warn('session-title-stamp: context menu unavailable, keeping the Slot row', error)
+        return false
+      }
+    }
+
     function apply(ctx) {
       installStyle(ctx)
       ctx.effect?.(() => ctx.locale.register(NS, DICT))
@@ -704,17 +748,32 @@ window.__ModuleLoader__.load({
         ),
       )
 
-      ctx.slots.inject('sidebar.workspaces.session.menu.item', () =>
-        ctx.slots.register(
-          {
-            name: 'sidebar.workspaces.session.menu.item',
-            id: 'session-title-stamp-retitle',
-            order: 0,
-            inject: () => ({ run, t }),
-          },
-          RegenerateMenuItem,
-        ),
-      )
+      const menus = sessionMenuService(ctx)
+      let dataMenu = typeof menus?.register === 'function' ? registerSessionMenuAction(ctx, menus, { run, t }) : false
+      if (!dataMenu) {
+        let disposeLegacyMenu
+        ctx.slots.inject('sidebar.workspaces.session.menu.item', () => {
+          if (dataMenu) return undefined
+          disposeLegacyMenu = ctx.slots.register(
+            {
+              name: 'sidebar.workspaces.session.menu.item',
+              id: 'session-title-stamp-retitle',
+              order: 0,
+              inject: () => ({ run, t }),
+            },
+            RegenerateMenuItem,
+          )
+          return disposeLegacyMenu
+        })
+        ctx.inject?.(['contextMenus'], (scope) => {
+          if (dataMenu) return
+          const service = scope.contextMenus ?? sessionMenuService(scope)
+          if (typeof service?.register !== 'function') return
+          if (!registerSessionMenuAction(scope, service, { run, t })) return
+          dataMenu = true
+          disposeLegacyMenu?.()
+        })
+      }
 
       ctx.slots.inject('sidebar.workspaces.session.menu.item', () =>
         ctx.slots.register(

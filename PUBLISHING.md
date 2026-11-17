@@ -4,6 +4,7 @@ This repository is already shaped as a DSH bundle and a format-1 market entry.
 
 ## Current releases
 
+- **0.9.0 (2026-11-17)**: Generate title is the first session-menu row on DSH 0.2.2+.
 - **0.8.3 (2026-11-16)**: header Generate title shot; action screenshots lead the gallery.
 - **0.8.2 (2026-11-15)**: listing leads with one-click Generate title; refreshed first screenshot.
 - **0.8.1 (2026-11-10)**: screenshots gallery and packaged screenshots.
@@ -205,7 +206,7 @@ Commit and push the index change.
 Use jsDelivr over GitHub (HTTPS, no redirects, no Pages setup):
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.3/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.9.0/market/index.json
 ```
 
 Prefer the tag URL: jsDelivr caches `@main` for a long time, and a cached copy

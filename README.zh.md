@@ -4,7 +4,7 @@
 
 给 DSH 会话一个稳定的「日期 | 分类 | 名称」标题。除了自动命名，还包括：
 
-- **一键重新生成**：会话头 ↻ 按钮、会话行 `···` 菜单「自动生成标题」，或 `/retitle`；点一下就地改名，不弹窗。
+- **一键重新生成**：会话头 ↻ 按钮、会话菜单第一项「自动生成标题」，或 `/retitle`；点一下就地改名，不弹窗。
 - **自动重算**：回答完成后更新，2 分钟冷却，超过 100 条消息后冻结；fork、子代理和手动固定的标题跳过。
 - **复制标题**：会话行 `···` 菜单多一项复制完整标题。
 - **设置页**：可视化调整格式、emoji、标题语言和重算节奏，带实时预览，不用改 YAML。
@@ -61,7 +61,7 @@
 在 **插件 → 发现（Discover）→ 索引源** 添加：
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.3/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.9.0/market/index.json
 ```
 
 然后在列表里安装 **Session title stamp / 会话标题印章**。插件以 profile bundle 的形式安装，之后可在插件页启停。
@@ -226,6 +226,7 @@ fork 子会话、子代理会话，以及用户手动改名固定的标题都会
 - bundle 依赖内置行 id `session-title-llm`。如果已有其它标题 provider 先注册，本插件会打 warn 并保持 inactive；先停用另一个再重载。
 - `llm`、`commands`、`sessions`、`sessionProjections`、`connection` 都采用延迟注入；缺少哪个只损失对应能力，不影响插件加载。
 - 浏览器半边依赖 Web 组合的 `sidebar.session.row.hover` 和 `conversation.session.header.actions` 座位；没有这两个座位的 shell 不会显示按钮/悬停行。
+- 在 DSH 0.2.2+「自动生成标题」是会话菜单的第一项（在「置顶会话」之上）；0.2.1 没有 context-menu 服务，同一动作走旧 Slot，排在「归档会话」之前。
 - 插件动态 import `@deepseek-ai/dsh-session-title-llm`。执行器缺失或不兼容时会降级为本地命名；如果 `ctx.sessionTitle` API 本身变化，则可能无法注册。
 
 ## 开发

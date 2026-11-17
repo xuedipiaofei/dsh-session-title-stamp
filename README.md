@@ -9,9 +9,9 @@ English | [中文](./README.zh.md)
 A DeepSeek Harness title provider for a configurable `DATE | CATEGORY | NAME`
 title. Beyond automatic naming:
 
-- **Generate title on demand** — the conversation-header ↻ button, the session
-  row's **Generate title** menu item, or `/retitle`. One click renames the
-  session in place, no dialog.
+- **Generate title on demand** — the conversation-header ↻ button, the first
+  row of the session menu (**Generate title**), or `/retitle`. One click
+  renames the session in place, no dialog.
 - **Auto refresh** — after a completed turn, with a 2-minute cooldown and a
   100-message freeze; forks and user-pinned titles are skipped.
 - **Copy title** — an extra item in the session `···` menu copies the full title.
@@ -80,7 +80,7 @@ and mirrors conventions used by other coding agents.
 Add this market index source in **Plugins → Discover → Index sources**:
 
 ```text
-https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.8.3/market/index.json
+https://cdn.jsdelivr.net/gh/xuedipiaofei/dsh-session-title-stamp@v0.9.0/market/index.json
 ```
 
 Then install **Session title stamp** from the list. The plugin installs as a
@@ -301,6 +301,9 @@ labels and the local fallback maps common keywords onto them.
 - The browser half needs the Web composition's `sidebar.session.row.hover` and
   `conversation.session.header.actions` seats. A shell that does not expose them
   simply shows no button/hover line.
+- On DSH 0.2.2+ the session menu action is a data contribution and sorts above
+  **Pin**; on 0.2.1, which has no context-menu service, the same action renders
+  through the legacy Slot just above **Archive**.
 - The provider imports `@deepseek-ai/dsh-session-title-llm` dynamically. A
   missing or incompatible executor degrades to local naming, but a changed
   `ctx.sessionTitle` API can prevent registration. Pin the DSH range when

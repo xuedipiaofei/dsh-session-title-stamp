@@ -19,11 +19,14 @@ body{display:flex;align-items:center;justify-content:center;padding:26px}
 .row.active{background:#272c36;box-shadow:inset 2px 0 0 var(--brand)}
 .row .time{margin-left:auto;color:var(--dim);font-size:10px}
 .row .more{margin-left:auto;color:var(--brand);font-size:14px;letter-spacing:2px;background:#313746;border-radius:6px;padding:0 6px;line-height:20px}
-.menu{position:absolute;right:4px;top:33px;width:216px;padding:6px;background:#2b303a;border:1px solid #414a5c;border-radius:11px;box-shadow:0 18px 46px #000b,0 0 0 1px #4a5a7a33;z-index:5}
+.menu{position:absolute;right:4px;top:33px;width:240px;padding:6px;background:#2b303a;border:1px solid #414a5c;border-radius:11px;box-shadow:0 18px 46px #000b,0 0 0 1px #4a5a7a33;z-index:5}
 .mi{display:flex;align-items:center;gap:9px;height:34px;padding:0 10px;border-radius:7px;color:#dfe3ea;font-size:13px}
-.mi .ico{width:15px;text-align:center;color:#9aa0aa;font-size:13px}
+.mi svg{width:15px;height:15px;flex:none;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;color:#9aa0aa}
+.mi .label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mi .kbd{margin-left:auto;color:#6e7480;font-size:11px;letter-spacing:.02em}
+.mi .chev{margin-left:auto;color:#6e7480;font-size:13px}
 .mi.on{background:#33405c;color:#fff;font-weight:600;box-shadow:inset 2px 0 0 var(--brand)}
-.mi.on .ico{color:var(--brand)}
+.mi.on svg{color:var(--brand)}
 .sep{height:1px;background:#3a4150;margin:4px 8px}
 .card{width:426px;margin-top:34px;background:#23262c;border:1px solid #343840;border-radius:13px;padding:16px 17px;box-shadow:0 18px 45px #0008}
 .card .t{font-size:15px;line-height:23px;color:#fff;font-weight:500}
@@ -43,9 +46,17 @@ body{display:flex;align-items:center;justify-content:center;padding:26px}
       <div class="rowline">
         <div class="row active"><span class="dot"></span><span class="title">1027 | 修复 | 排查登录接口 401</span><span class="more">⋯</span></div>
         <div class="menu">
-          <div class="mi on"><span class="ico">↻</span>自动生成标题</div>
+          <div class="mi on"><svg viewBox="0 0 16 16"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9"/><path d="M13.5 2v4h-4"/></svg><span class="label">自动生成标题</span></div>
           <div class="sep"></div>
-          <div class="mi"><span class="ico">⧉</span>复制标题</div>
+          <div class="mi"><svg viewBox="0 0 16 16"><circle cx="8" cy="6" r="3"/><path d="M8 9v5"/></svg><span class="label">置顶会话</span></div>
+          <div class="mi"><svg viewBox="0 0 16 16"><path d="M3 13l1-3 7-7 2 2-7 7z"/></svg><span class="label">重命名</span><span class="kbd">⌥ ⌘ G</span></div>
+          <div class="mi"><svg viewBox="0 0 16 16"><circle cx="5" cy="3.5" r="1.4"/><circle cx="5" cy="12.5" r="1.4"/><circle cx="11.5" cy="5" r="1.4"/><path d="M5 5v6M11.5 6.5c0 3-6.5 1.5-6.5 4.5"/></svg><span class="label">分叉会话</span><span class="kbd">⌥ ⌘ F</span></div>
+          <div class="sep"></div>
+          <div class="mi"><svg viewBox="0 0 16 16"><rect x="5.5" y="5.5" width="7" height="8" rx="1.5"/><path d="M3.5 10.5v-7h7"/></svg><span class="label">复制 Session ID</span></div>
+          <div class="mi"><svg viewBox="0 0 16 16"><path d="M6 10l6.5-6.5M8 3.5h4.5V8"/></svg><span class="label">在应用中打开</span><span class="chev">›</span></div>
+          <div class="mi"><svg viewBox="0 0 16 16"><rect x="5.5" y="5.5" width="7" height="8" rx="1.5"/><path d="M3.5 10.5v-7h7"/></svg><span class="label">复制标题</span></div>
+          <div class="sep"></div>
+          <div class="mi"><svg viewBox="0 0 16 16"><rect x="2.5" y="5" width="11" height="7.5" rx="1"/><path d="M1.5 2.5h13v2.5h-13z"/></svg><span class="label">归档会话</span><span class="kbd">⌘ A</span></div>
         </div>
       </div>
       <div class="row"><span class="dot"></span><span class="title">1027 | 发布 | Ubuntu 环境初始化</span><span class="time">1 天前</span></div>

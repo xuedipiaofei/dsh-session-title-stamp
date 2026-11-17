@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.0 — 2026-11-17
+
+- The session menu action is now a context-menu data contribution: on DSH
+  0.2.2+ **Generate title** is the first row, above Pin; 0.2.1 keeps the legacy
+  Slot row above Archive.
+- Refreshed both action screenshots: a larger header shot and the menu with the
+  action on top.
+
 ## 0.8.3 — 2026-11-16
 
 - New conversation-header screenshot for one-click Generate title; both action
